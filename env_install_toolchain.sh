@@ -11,16 +11,17 @@ if [ -n "$1" ]; then
 		build_toolchain_path="${INSTALL_TARGET_DIR}/$toolchain_cross/bin"
 	else
 		echo "error: not found dir $1"
+		echo "command format: source $0 [dirname]"
+		echo "     [dirname] is optional"
 		return 1
 	fi
 else
 	build_toolchain_path="${PWD}/bin"
 fi
 
-echo "Install toolchain for user id:"
-echo "    root (need root permission): [0]"
-echo "    current user (recommend): [1]"
-read -p "enter select: " selectopt
+# default 1
+selectopt=1
+
 case $selectopt in
         0)
                 if [ -n "$INSTALL_TARGET_DIR" ]; then
